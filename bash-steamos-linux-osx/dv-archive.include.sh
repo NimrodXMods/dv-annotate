@@ -12,7 +12,8 @@ steamid=64755991
 archivetag=NimX
 #
 # This should be where the dV directory (game data folder)
-# is stored. (Not the dV folder iteself.)
+# is stored. (Not the dV folder iteself.) If your location
+# is different for some reason then change.
 #
 sharedir=~/.local/share
 #
