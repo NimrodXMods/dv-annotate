@@ -1,10 +1,14 @@
-# Installation (Windows)
+# dv-annotate for Windows
 
-In `build\dv-annotate.ps1` is a GUI utility as a human-readable script for Windows Powershell 5.1 (the powershell.exe that ships with Windows 10 and later).
+## Installation
 
-This can be installed by right-clicking on the file after downloading and selecting "Run with PowerShell". You will be asked to confirm before the script is installed and a shortcut created to make it easy to run. This should work without installing anything else on Windows 10 or later.
+[See the build directory](build) for installation instructions. This directory only contains the code.
 
-Once this is done the `dv-annoytate.ps1` script will disappear from the directory (it got moved to `%APPDATA%\dV-annotate`) and a shortcut will appear. This shortcut opens the GUI when opened. It can be moved to any location you want and will still work.
+## About the Code
+
+The code is written entirely in PowerShell and runs without any compilation. Since Windows PowerShell 5.1 comes with Windows 10 and later, it will run on any Windows installation that isn't more than 8 years old or so.
+
+The code isn't that interesting except that it makes use of .NET Windows Forms for the GUI, so it can be interesting for that reason. It's also a concept that can be applied to QA for other games or software.
 
 ## More Info
 
