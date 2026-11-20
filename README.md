@@ -8,7 +8,7 @@ This repo contains two different "dv-annotate" tools.
 
 ## Windows
 
-In [`windows/build`](windows/build) is a GUI utility as a human-readable script for Windows Powershell 5.1 (the powershell.exe that ships with Windows 10 and later). Install instructions are located in that directory.
+In [`windows/build`](windows/build) is a GUI utility as a human-readable script for Windows Powershell 5.1 (the powershell.exe that ships with Windows 10 and later). Download the installer from the [latest release](https://github.com/NimrodXMods/dv-annotate/releases/latest). Full install instructions are in that directory.
 
 ## SteamOS, Linux, OSX
 
