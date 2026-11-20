@@ -208,13 +208,7 @@ $CheckBoxNoResetReadme_VisibleChanged = {
 
 # Launch Button
 $ButtonLaunch_Click = {
-    $dvRegInfo = (Get-childitem 'hklm:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall') |
-        Where-Object { $_.GetValue('DisplayName') -like '?V: Rings of Saturn' }
-    $dvInstallDir = $dvRegInfo.GetValue('InstallLocation')
-    $dvExe = (Join-Path $dvInstallDir 'Delta-V.exe')
-    $TabControlTop.SelectTab('TabAnnotate')
-    UpdateStatusMessage "Launching Delta V from '$dvExe'"
-    Invoke-Item $dvExe
+    LaunchDVGame
 }
 
 # Archive Button

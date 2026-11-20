@@ -1,4 +1,4 @@
-﻿$Version = "1.2.0"
+﻿$Version = "1.2.1"
 # Windows PowerShell GUI script for annotating log messages for the game
 # Delta V: Rings of Saturn and archiving up the logs, annotations,
 # save games, and screemshots to send off to Kodera for debugging.
@@ -421,6 +421,21 @@ function CreateZipArchive ( [bool]$includeScreenshots = $true, [bool]$resetReadm
     }
     finally {
         Remove-Item -Force -Recurse -LiteralPath $tmpDir
+    }
+}
+
+function LaunchDVGame {
+    try {
+        $dvRegInfo = (Get-childitem 'hklm:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall') |
+            Where-Object { $_.GetValue('DisplayName') -like '?V: Rings of Saturn' }
+        $dvInstallDir = $dvRegInfo.GetValue('InstallLocation')
+        $dvExe = (Join-Path $dvInstallDir 'Delta-V.exe')
+        Start-Process -NoNewWindow $dvExe
+        $TabControlTop.SelectTab('TabAnnotate')
+        UpdateStatusMessage "Launching Delta V from '$dvExe'"
+    }
+    catch {
+        ErrorBox("Exception trying to launch dV: $_", "Launch Error")
     }
 }
 
