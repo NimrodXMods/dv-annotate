@@ -48,8 +48,9 @@ if (-not $IsccPath -or -not (Test-Path -LiteralPath $IsccPath -PathType Leaf)) {
 }
 
 # Bundle
-& (Join-Path $windowsDir 'Build-Bundle.ps1') | Out-Null
-if (-not $?) { Stop-Build 'Build-Bundle.ps1 failed.' }
+$global:LASTEXITCODE = 0
+$null = & (Join-Path $windowsDir 'Build-Bundle.ps1')
+if (-not $? -or $LASTEXITCODE -ne 0) { Stop-Build 'Build-Bundle.ps1 failed.' }
 
 # Compile
 & $IsccPath "/DAppVersion=$version" $issFile
