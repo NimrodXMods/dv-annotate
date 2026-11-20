@@ -27,7 +27,13 @@ All functions and handlers share script scope. Handlers reach `$prefs` and the f
 
 ### Build (single-file bundle)
 
-`windows/build/dv-annotate.ps1` is the distributable: every dot-sourced file inlined into one script, which users download directly from GitHub. It is produced by PowerShell Pro Tools' `Merge-Script` using `windows/package.psd1` (bundle only, no exe packaging). `Merge-Script` is not currently installed on this machine. The bundle is committed to git. After changing source files, regenerate it (or tell the user it needs regenerating) and bump `$Version` in `dv-annotate.ps1`.
+`windows/build/dv-annotate.ps1` is the distributable: every dot-sourced file inlined into one script, which users download directly from GitHub. Rebuild it with:
+
+```powershell
+windows/Build-Bundle.ps1
+```
+
+It recursively inlines each `. (Join-Path $PSScriptRoot '…')` line and writes UTF-8 with BOM. It replaces PowerShell Pro Tools' `Merge-Script`, which produced earlier bundles from `windows/package.psd1` and is not installed here. The bundle is committed to git. After changing source files, bump `$Version` in `dv-annotate.ps1`, rebuild, and commit the bundle with the source change.
 
 ### Lint
 
