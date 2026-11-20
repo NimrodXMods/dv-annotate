@@ -52,6 +52,9 @@ This reads `$Version` from `windows/dv-annotate.ps1`, rebuilds the bundle with `
 
 Pushing the tag runs `.github/workflows/release.yml`, which builds the installer, attests build provenance, and publishes a GitHub Release with `dv-annotate-setup-X.Y.Z.exe` and `dv-annotate.ps1`. CI fails on a stale bundle: `build.yml` rebuilds the bundle and fails if it differs from the committed `windows/build/dv-annotate.ps1`. `release.yml` fails if the tag does not equal `$Version`.
 
+- Immutable releases must be enabled in repo Settings > General > Releases, or `gh release verify-asset` fails for players.
+- If a release run fails after the draft was created, delete the draft release and re-run the job.
+
 Verification commands for users are in `windows/build/README.md`.
 
 ### Lint
@@ -62,7 +65,7 @@ Invoke-ScriptAnalyzer -Path windows -Settings windows/PSScriptAnalyzerSettings.p
 
 The settings enable all rules except `PSUseDeclaredVarsMoreThanAssignments` and `PSAvoidGlobalVars`. Those two are excluded because handlers and controls are cross-file script-scope variables.
 
-There are no automated tests.
+There are no unit tests. CI runs an installer smoke test (`windows/installer/Test-Installer.ps1`, which only runs on GitHub Actions).
 
 ### Running / the self-install gotcha
 

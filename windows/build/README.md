@@ -14,11 +14,11 @@
 
 ### Uninstall
 
-Open Windows Settings, go to Apps > Installed apps, find "dV Annotate", and choose Uninstall. Your saved settings file (`prefs.json`) is kept.
+Open Windows Settings, go to Apps > Installed apps (on Windows 10: Apps & features), find "dV Annotate", and choose Uninstall. Your saved settings file (`prefs.json`) is kept.
 
 ### Verifying the download (optional)
 
-If you want to confirm the installer really came from this project, you can check it with the [GitHub CLI](https://cli.github.com/) (`gh`). Open PowerShell in the folder you downloaded the file to and run these two commands, replacing `X.Y.Z` with the version number in the file name (and `vX.Y.Z` with the same version, with a `v` in front):
+If you want to confirm the installer really came from this project, you can check it with the [GitHub CLI](https://cli.github.com/) (`gh`). The `gh` checks need the GitHub CLI installed and a one-time `gh auth login` (sign in to GitHub). Open PowerShell in the folder you downloaded the file to and run these two commands, replacing `X.Y.Z` with the version number in the file name (and `vX.Y.Z` with the same version, with a `v` in front):
 
 ```
 gh attestation verify dv-annotate-setup-X.Y.Z.exe -R NimrodXMods/dv-annotate
@@ -29,7 +29,7 @@ Both should report that the file is verified. If either one fails, do not run th
 
 ## Option 2: The script only (alternative)
 
-This route skips the installer. It is a single script file that copies itself into place the first time you run it.
+This route skips the installer. It is a single script file that moves itself into place the first time you run it.
 
 1. Download `dv-annotate.ps1` to any directory you normally download files to, such as your Windows user Downloads directory. This can be done by clicking the file `dv-annotate.ps1` above and selecting the download icon in the upper right of the frame where it says "Raw". You can also download it from the same [latest release](https://github.com/NimrodXMods/dv-annotate/releases/latest).
 
@@ -39,7 +39,7 @@ This route skips the installer. It is a single script file that copies itself in
 
 1. In the Windows explorer, right-click on the downloaded file `dv-annotate.ps1` and select "Run with PowerShell".
 
-1. A console window will appear which will ask you to confirm the installation and will tell you what it copied where. This is a "Lightweight Install" process that just copies the file to `%APPDATA%\dV-annotate` and creates a shortcut for you to run it. On Windows 10 or later, this should work without installing any additional software.
+1. A console window will appear which will ask you to confirm the installation and will tell you what it copied where. This is a "Lightweight Install" process that just moves the file to `%APPDATA%\dV-annotate` and creates a shortcut for you to run it. On Windows 10 or later, this should work without installing any additional software.
 
 1. Once this is done the `dv-annotate.ps1` script will disappear from the download directory (it got moved to `%APPDATA%\dV-annotate`) and a shortcut will appear in the download directory.
 
