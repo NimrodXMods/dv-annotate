@@ -1,4 +1,4 @@
-﻿$Version = "1.2.1"
+﻿$Version = "1.3.0"
 # Windows PowerShell GUI script for annotating log messages for the game
 # Delta V: Rings of Saturn and archiving up the logs, annotations,
 # save games, and screemshots to send off to Kodera for debugging.
@@ -287,6 +287,7 @@ Would you like to accept? (y/n)
         }
         Remove-Item -Force $installedScriptPath -ErrorAction SilentlyContinue *>&1 | Out-Null
         Move-Item -Force $PSCommandPath $installedScriptPath -ErrorAction Stop *>&1 | Out-Null
+        Unblock-File -LiteralPath $installedScriptPath
         Write-Output '[Script moved to data directory.]'
 
         $ShortcutParams = @{
@@ -295,7 +296,7 @@ Would you like to accept? (y/n)
             # Standard Windows Powershell 5.1 location
             TargetPath   = "$env:SystemRoot\System32\windowspowershell\v1.0\powershell.exe"
             WindowStyle  = 'Minimized'
-            Arguments    = "-NoProfile -WindowStyle Hidden -ExecutionPolicy RemoteSigned -Command ${installedScriptPath}"
+            Arguments    = "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"${installedScriptPath}`""
             # This is a standard explorer icon that looks like a page with a pencil.
             IconLocation = '%SystemRoot%\System32\SHELL32.dll,269'
         }
@@ -629,7 +630,7 @@ function LaunchDVGame {
         UpdateStatusMessage "Launching Delta V from '$dvExe'"
     }
     catch {
-        ErrorBox("Exception trying to launch dV: $_", "Launch Error")
+        ErrorBox "Exception trying to launch dV: $_" "Launch Error"
     }
 }
 

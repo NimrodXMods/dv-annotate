@@ -63,10 +63,6 @@ The GUI needs an interactive desktop session, so it can't be meaningfully exerci
 - Archiving copies the game dir to `%TEMP%\<guid>.tmp`, adds `_screenshots/`, and zips to `outputDir` (default Downloads) as `dV-Log-<timestamp>.zip`. It then optionally resets the annotation log.
 - Game launch finds the install path via the `HKLM\...\Uninstall` registry entry whose DisplayName matches `?V: Rings of Saturn`, then runs `Delta-V.exe`.
 
-## TODO
-
-- `LaunchDVGame` in `windows/dv-annotate.ps1` calls `ErrorBox("Exception trying to launch dV: $_", "Launch Error")` with method-call syntax, so both strings bind to `$Message` as an array and the caption is lost. Change it to `ErrorBox "Exception trying to launch dV: $_" "Launch Error"`, then rebuild the bundle.
-
 ## Bash scripts (SteamOS/Linux/macOS)
 
 Each script sources its config from **`~/dv-archive.include.sh`** (the home directory, not the script directory). That file holds a hardcoded `steamid`, `archivetag`, and paths that default to SteamOS locations (`~/.local/share/dV`). `dv-archive.sh` writes a `.tgz` of `~/.local/share/dV` and then clears the `_README` annotations file. The scripts use GNU `find -printf`/`-newermt`, so they need adjustment for macOS.
